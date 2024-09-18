@@ -1,10 +1,11 @@
 from flask import Flask, jsonify
+from flask import request
 from sentiment_analysis import get_sentiment
 import langid
 
 app = Flask(__name__)
 
-@app.route("/api/sentiment/<path:text>")
+@app.route("/<path:text>")
 def hello(text):
     # Detect the language of the input text using langid
     lang, confidence = langid.classify(text)
