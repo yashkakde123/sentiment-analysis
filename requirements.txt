@@ -29,9 +29,9 @@ fundamentals==2.7.0
 future==1.0.0
 gast==0.6.0
 google-api-core==2.19.2
-google-api-python-client==2.144.0
+google-api-python-client==2.14.0
 google-auth==2.34.0
-google-auth-httplib2==0.2.0
+google-auth-httplib2==0.1.0
 google-cloud-core==2.4.1
 google-cloud-firestore==2.18.0
 google-cloud-storage==2.18.2
@@ -45,7 +45,7 @@ grpcio-status==1.66.1
 gunicorn==23.0.0
 h11==0.14.0
 h5py==3.11.0
-httplib2==0.22.0
+httplib2>=0.19.0,<1.0
 huggingface-hub==0.24.5
 idna==3.7
 indic-transliteration==2.3.61
