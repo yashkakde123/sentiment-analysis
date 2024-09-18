@@ -3,6 +3,12 @@
 from langdetect import detect
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from indic_transliteration import sanscript
+import nltk
+
+try:
+    nltk.data.find('vader_lexicon')
+except LookupError:
+    nltk.download('vader_lexicon')
 
 # Load the sentiment analysis model
 sia = SentimentIntensityAnalyzer()
