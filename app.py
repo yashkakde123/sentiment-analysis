@@ -10,9 +10,16 @@ def hello():
         text = request.args.get("text")
     elif request.method == "POST":
         text = request.form["text"]
-    elif request.method == "HEAD":
-        # Handle HEAD request method
-        return jsonify({"message": "HEAD request received"}), 200
+    else:
+        return jsonify({"error": "Unsupported request method"}), 405
+
+    if text is None:
+        return jsonify({"error": "Text is required"}), 400
+
+    lang, confidence = langid.classify(text)
+    message = get_sentiment(text, lang)
+
+    return jsonify({"sentiment": message, "message": text, "language": lang})
 
     # Detect the language of the input text using langid
     lang, confidence = langid.classify(text)
