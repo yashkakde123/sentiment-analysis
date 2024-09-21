@@ -10,6 +10,9 @@ def hello():
         text = request.args.get("text")
     elif request.method == "POST":
         text = request.form["text"]
+    elif request.method == "HEAD":
+        # Handle HEAD request method
+        return jsonify({"message": "HEAD request received"}), 200
 
     # Detect the language of the input text using langid
     lang, confidence = langid.classify(text)
