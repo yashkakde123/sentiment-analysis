@@ -1,15 +1,15 @@
 from flask import Flask, jsonify, request
-from flask import request
 from sentiment_analysis import get_sentiment
 import langid
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def hello():
-    text = request.args.get("text")
-    if text is None:
-        return jsonify({"error": "text parameter is required"}), 400
+    if request.method == "GET":
+        text = request.args.get("text")
+    elif request.method == "POST":
+        text = request.form["text"]
 
     # Detect the language of the input text using langid
     lang, confidence = langid.classify(text)
