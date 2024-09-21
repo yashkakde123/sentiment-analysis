@@ -1,12 +1,16 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask import request
 from sentiment_analysis import get_sentiment
 import langid
 
 app = Flask(__name__)
 
-@app.route("/<path:text>")
-def hello(text):
+@app.route("/")
+def hello():
+    text = request.args.get("text")
+    if text is None:
+        return jsonify({"error": "text parameter is required"}), 400
+
     # Detect the language of the input text using langid
     lang, confidence = langid.classify(text)
 
@@ -17,6 +21,3 @@ def hello(text):
 
 if __name__ == "__main__":
     app.run()
-    
-
-    
