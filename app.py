@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from sentiment_analysis import get_sentiment
 import langid
+import jsonify
 
 app = Flask(__name__)
 
