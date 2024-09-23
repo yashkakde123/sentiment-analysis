@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, render_template, request
 from sentiment_analysis import get_sentiment
 import langid
 
@@ -16,18 +16,20 @@ def hello():
     if text is None:
         return jsonify({"error": "Text is required"}), 400
 
-    lang, confidence = langid.classify(text)
-    message = get_sentiment(text, lang)
-
-    return jsonify({"sentiment": message, "message": text, "language": lang})
-
-    # Detect the language of the input text using langid
+    # Detect the language of the input text
     lang, confidence = langid.classify(text)
 
-    # Pass the detected language to the get_sentiment function
-    message = get_sentiment(text, lang)
+    # Perform sentiment analysis and get the full sentiment result
+    sentiment_result = get_sentiment(text, lang)
 
-    return jsonify({"sentiment": message, "message": text, "language": lang})
+    # Render results as an HTML table using the template, passing the full sentiment result
+    return render_template(
+        "results.html",
+        text=text,
+        language=lang,
+        sentiment=sentiment_result['sentiment_classification'],
+        sentiment_scores=sentiment_result['sentiment_scores']
+    )
 
 if __name__ == "__main__":
     app.run()
