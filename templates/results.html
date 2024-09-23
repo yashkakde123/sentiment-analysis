@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Results</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis Result</h1>
+    <table>
+        <tr>
+            <th>Text</th>
+            <td>{{ text }}</td>
+        </tr>
+        <tr>
+            <th>Language</th>
+            <td>{{ language }}</td>
+        </tr>
+        <tr>
+            <th>Sentiment</th>
+            <td>{{ sentiment }}</td>
+        </tr>
+        <tr>
+            <th>Positive Score</th>
+            <td>{{ sentiment_scores['pos'] }}</td>
+        </tr>
+        <tr>
+            <th>Neutral Score</th>
+            <td>{{ sentiment_scores['neu'] }}</td>
+        </tr>
+        <tr>
+            <th>Negative Score</th>
+            <td>{{ sentiment_scores['neg'] }}</td>
+        </tr>
+        <tr>
+            <th>Compound Score</th>
+            <td>{{ sentiment_scores['compound'] }}</td>
+        </tr>
+    </table>
+</body>
+</html>
