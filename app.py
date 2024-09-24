@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from sentiment_analysis import get_sentiment
 import langid
-import jsonify
 
 app = Flask(__name__)
 
@@ -12,10 +11,10 @@ def hello():
     elif request.method == "POST":
         text = request.form["text"]
     else:
-        return jsonify({"error": "Unsupported request method"}), 405
+        return ({"error": "Unsupported request method"}), 405
 
     if text is None:
-        return jsonify({"error": "Text is required"}), 400
+        return ({"error": "Text is required"}), 400
 
     # Detect the language of the input text
     lang, confidence = langid.classify(text)
